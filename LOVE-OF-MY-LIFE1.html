@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOVE OF MY LIFE ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap');
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; min-height:100vh; overflow-x:hidden; color:#fff;
+  font-family:'Cormorant Garamond',serif;
+  background:#170812;
+}
+body.mobile-fullscreen{
+  min-height:100dvh;
+}
+body.mobile-fullscreen .wrap{
+  min-height:100dvh;
+}
+body:before{
+  content:""; position:fixed; inset:0; z-index:-3;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(255,95,145,.22),transparent 30%),
+    radial-gradient(circle at 15% 80%,rgba(190,40,100,.18),transparent 35%),
+    radial-gradient(circle at 90% 15%,rgba(255,170,190,.12),transparent 30%),
+    linear-gradient(145deg,#170812,#2b0b1d 48%,#10050d);
+}
+.stars,.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.stars{z-index:-2}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.65;animation:twinkle 3s infinite}
+@keyframes twinkle{50%{opacity:.15;transform:scale(.5)}}
+.heart{
+ position:absolute;bottom:-50px;font-size:20px;opacity:0;
+ animation:rise 10s linear infinite;
+ filter:drop-shadow(0 0 8px rgba(255,80,130,.5));
+}
+@keyframes rise{
+ 0%{transform:translateY(0) rotate(0);opacity:0}
+ 12%{opacity:.75}100%{transform:translateY(-115vh) rotate(360deg);opacity:0}
+}
+.wrap{width:min(940px,92%);margin:auto;text-align:center;padding:55px 0 90px}
+.badge{
+ display:inline-block;padding:8px 18px;border:1px solid rgba(255,190,210,.35);
+ border-radius:30px;letter-spacing:3px;text-transform:uppercase;font-size:12px;
+ color:#ffd5df;background:rgba(255,255,255,.05);backdrop-filter:blur(8px)
+}
+h1{font-family:'Great Vibes',cursive;font-size:clamp(3.2rem,9vw,6.8rem);font-weight:400;margin:20px 0 5px;text-shadow:0 0 35px rgba(255,70,130,.4)}
+.lead{font-size:1.25rem;color:#eac4ce;font-style:italic;margin:0 0 40px}
+.stage{position:relative;height:360px;display:flex;justify-content:center;align-items:center}
+.glow{position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(255,50,120,.12);filter:blur(35px);animation:pulse 3s infinite}
+@keyframes pulse{50%{transform:scale(1.12);opacity:.7}}
+.envelope{position:relative;width:350px;height:235px;cursor:pointer;filter:drop-shadow(0 25px 30px rgba(0,0,0,.45));transition:.5s}
+.envelope:hover{transform:translateY(-8px) scale(1.02)}
+.body{
+ position:absolute;inset:0;background:linear-gradient(145deg,#a61f50,#68122f);
+ border-radius:8px;z-index:3;overflow:hidden
+}
+.body:before,.body:after{content:"";position:absolute;bottom:0;width:72%;height:2px;background:rgba(255,190,210,.28)}
+.body.mobile-fullscreen{
+  min-height:100dvh;
+}
+body.mobile-fullscreen .wrap{
+  min-height:100dvh;
+}
+body:before{left:-8%;transform:rotate(33deg);transform-origin:left}
+.body:after{right:-8%;transform:rotate(-33deg);transform-origin:right}
+.flap{
+ position:absolute;left:0;top:0;width:0;height:0;
+ border-left:175px solid transparent;border-right:175px solid transparent;
+ border-top:128px solid #bd2b5d;transform-origin:top;transition:1s;z-index:5
+}
+.seal{
+ position:absolute;z-index:7;left:50%;top:53%;transform:translate(-50%,-50%);
+ width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
+ background:#f3a0b7;color:#64122e;font-size:25px;box-shadow:0 0 0 5px rgba(255,255,255,.12)
+}
+.letter{
+ position:absolute;left:25px;top:22px;width:300px;height:190px;
+ background:#fffaf7;color:#4d2430;border-radius:5px;z-index:2;padding:25px;
+ box-shadow:0 10px 30px rgba(0,0,0,.25);text-align:left;
+ transition:1.15s cubic-bezier(.2,.8,.2,1);overflow:auto
+}
+.letter h2{text-align:center;font-family:'Great Vibes',cursive;font-size:2.4rem;font-weight:400;color:#9e2850;margin:0 0 18px}
+.letter p{font-size:16px;line-height:1.75;margin:0 0 18px}
+.signature{text-align:right;font-family:'Great Vibes',cursive;font-size:2rem;color:#9e2850;margin-top:20px}
+.envelope.open .flap{transform:rotateX(180deg);z-index:1}
+.envelope.open .letter{transform:translateY(-170px);height:610px;z-index:6}
+.envelope.open .seal{opacity:0;pointer-events:none}
+.stage.open-space{height:790px}
+.hint{margin-top:20px;color:#dca7b5;letter-spacing:1px;font-size:14px;transition:.4s}
+.envelope.open + .hint{opacity:0}
+.divider{width:90px;height:1px;background:#a83b60;margin:25px auto}
+.footer{color:#b98596;font-size:14px;letter-spacing:2px}
+.music{
+ position:fixed;right:22px;bottom:22px;z-index:20;width:52px;height:52px;border-radius:50%;
+ border:1px solid rgba(255,255,255,.25);background:rgba(50,8,25,.7);color:#fff;
+ cursor:pointer;font-size:19px;backdrop-filter:blur(10px)
+}
+/* Fullscreen button */
+.fullscreen{
+ position:fixed;left:22px;bottom:22px;z-index:20;width:52px;height:52px;
+ border-radius:50%;border:1px solid rgba(255,255,255,.25);
+ background:rgba(50,8,25,.7);color:#fff;cursor:pointer;font-size:19px;
+ backdrop-filter:blur(10px);transition:.3s;
+}
+.fullscreen:hover{transform:scale(1.08);background:rgba(110,18,55,.85)}
+@media(max-width:600px){
+  .fullscreen{
+    left:14px;bottom:14px;width:48px;height:48px;
+    font-size:18px;
+  }
+
+ .wrap{padding-top:35px}.stage{height:300px}.stage.open-space{height:700px}
+ .envelope{width:290px;height:195px}.flap{border-left-width:145px;border-right-width:145px;border-top-width:106px}
+ .letter{width:250px;height:160px;left:20px;padding:20px}
+ .envelope.open .letter{transform:translateY(-145px);height:540px}
+ .letter p{font-size:14px}.seal{width:48px;height:48px}
+}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="hearts" id="hearts"></div>
+
+<main class="wrap">
+  <span class="badge">A letter from my heart</span>
+  <h1>LOVE OF MY LIFE</h1>
+  <p class="lead">Some feelings are too beautiful to leave unsaid.</p>
+
+  <section class="stage" id="stage">
+    <div class="glow"></div>
+    <div>
+      <div class="envelope" id="envelope" aria-label="Open the love letter">
+        <article class="letter">
+          <h2>My Love ❤️</h2>
+          <p>Sometimes, I get scared that someday you will leave me. Not because I don't trust you, but because a part of me is always afraid that one day, loving me will become too much for you. That maybe I'll become a burden—someone whose problems, emotions, and presence slowly become too heavy to carry.</p>
+          <p>I fear the day when you might look at me differently, when talking to me starts feeling like a responsibility instead of something you genuinely want to do. I fear becoming someone you stay with out of guilt rather than love.</p>
+          <p>And maybe that's why sometimes I overthink the smallest changes. A shorter reply, a different tone, a little distance. I start wondering if you're getting tired of me, if I'm asking for too much, or if one day you'll realize that life would be easier without me in it.</p>
+          <p>But at the same time, the thought of losing you scares me more than I know how to explain.</p>
+          <p>So if there ever comes a time when things feel too heavy, please don't just disappear. Talk to me. Let me understand what you're feeling.</p>
+          <p>Because more than anything, I think I'm just scared of waking up one day and realizing that the person I thought would stay had quietly decided that I was too much to keep.</p>
+          <p>And honestly, I hope that day never comes.</p>
+          <div class="signature">Forever hoping it's us. ❤️</div>
+        </article>
+        <div class="body"></div>
+        <div class="flap"></div>
+        <div class="seal">♥</div>
+      </div>
+      <div class="hint">✦ Click the seal to open my heart ✦</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <div class="footer">made with love • always ❤️</div>
+</main>
+
+<button class="fullscreen" id="fullscreen" title="Fullscreen">⛶</button>
+<button class="music" id="music" title="Toggle ambient music">♪</button>
+<audio id="audio" loop>
+  <!-- Add your own music file here if desired: <source src="your-song.mp3" type="audio/mpeg"> -->
+</audio>
+
+<script>
+const envelope=document.getElementById('envelope');
+const stage=document.getElementById('stage');
+
+envelope.addEventListener('click',()=>{
+  const opened=envelope.classList.toggle('open');
+  stage.classList.toggle('open-space',opened);
+  document.querySelector('.hint').textContent=opened
+    ? '❤️ Take your time reading this.'
+    : '✦ Click the seal to open my heart ✦';
+});
+
+const stars=document.getElementById('stars');
+for(let i=0;i<90;i++){
+  const s=document.createElement('span');s.className='star';
+  s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';
+  s.style.animationDelay=(Math.random()*4)+'s';
+  s.style.animationDuration=(2+Math.random()*4)+'s';
+  stars.appendChild(s);
+}
+
+const hearts=document.getElementById('hearts');
+const symbols=['♥','♡','❤','💕','💗'];
+for(let i=0;i<24;i++){
+  const h=document.createElement('span');h.className='heart';
+  h.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  h.style.left=Math.random()*100+'%';
+  h.style.fontSize=(12+Math.random()*25)+'px';
+  h.style.animationDuration=(7+Math.random()*9)+'s';
+  h.style.animationDelay=(-Math.random()*15)+'s';
+  hearts.appendChild(h);
+}
+
+const fullscreen=document.getElementById('fullscreen');
+fullscreen.addEventListener('click', async ()=>{
+  try{
+    if(document.fullscreenElement){
+      await document.exitFullscreen();
+      fullscreen.textContent='⛶';
+      return;
+    }
+
+    // Android/Chrome and most modern mobile browsers
+    if(document.documentElement.requestFullscreen){
+      await document.documentElement.requestFullscreen({navigationUI:'hide'});
+      document.body.classList.add('mobile-fullscreen');
+      fullscreen.textContent='×';
+      return;
+    }
+
+    // iPhone/iPad: true browser fullscreen is not exposed to normal webpages.
+    // This still makes the page fill the available screen.
+    document.body.classList.toggle('mobile-fullscreen');
+    fullscreen.textContent=document.body.classList.contains('mobile-fullscreen') ? '×' : '⛶';
+  }catch(e){
+    document.body.classList.toggle('mobile-fullscreen');
+  }
+});
+document.addEventListener('fullscreenchange',()=>{
+  const active=!!document.fullscreenElement;
+  document.body.classList.toggle('mobile-fullscreen',active);
+  fullscreen.textContent=active ? '×' : '⛶';
+});
+
+const audio=document.getElementById('audio');
+const music=document.getElementById('music');
+music.addEventListener('click',()=>{
+  if(!audio.src){ alert('Add your own MP3 file to the audio section in the HTML first.'); return; }
+  if(audio.paused){audio.play();music.textContent='❚❚';}
+  else{audio.pause();music.textContent='♪';}
+});
+</script>
+</body>
+</html>
